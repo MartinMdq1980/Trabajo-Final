@@ -21,13 +21,16 @@
       </button>
     </div>
     <div class="d-flex margin-search" v-if="this.$store.state.titulo === 'Usuarios'">
+      <router-link :to="'/AltaUser'" class="btn btn-secondary me-2" data-toggle="tooltip" data-bs-placement="bottom" title="Alta usuario"> 
+        <i class="bi bi-pencil"></i>
+      </router-link>
       <input v-model="busqueda" class="form-control me-2" type="search" placeholder="Búsqueda" aria-label="Search" data-toggle="tooltip" data-bs-placement="bottom" title="Busqueda por username">
-      <button @click="Listar_Usuarios({username:busqueda})" type="button" class="btn btn-secondary">
+      <button @click="BusquedaUsers({username:busqueda})" type="button" class="btn btn-secondary">
          Buscar
       </button>
     </div>
    </div>
- </nav> 
+  </nav> 
 </template>
 
 <script>
@@ -36,6 +39,7 @@ export default {
     name:'Header-app',
     data(){
       return {
+        showModal: false,
         busqueda: null,
         id: 1, // default
       }
@@ -43,10 +47,10 @@ export default {
     computed: {
     },
     methods:{
-      ...mapActions(['Listar_Usuarios','Listar_Posts_Por_Usuario','ActualizarTitulo']),
+      ...mapActions(['Listar_Usuarios','Listar_Posts_Por_Usuario','ActualizarTitulo','BusquedaUsers']),
       Home() {
         this.Listar_Usuarios(); //me carga todos los usuarios de nuevo por si filtro por busqueda
-        this.$router.push('/');
+        this.$router.push('/').catch(()=>{});
       },
      Posts() {
         this.ActualizarTitulo('Posts Usuario ID: ' + this.id);
@@ -59,7 +63,7 @@ export default {
 
 <style>
 .margin-left-primerButton{
-    margin-left: 120px !important;
+    margin-left: 120px;
 }
 .margin-left-segButton{
     margin-left: 10px !important;

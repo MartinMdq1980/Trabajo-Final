@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Posts from '../views/Posts.vue'
-
+import AbmUser from '../views/AbmUser.vue'
 
 Vue.use(VueRouter)
 
@@ -17,6 +17,12 @@ const routes = [
     name: 'Posts',
     props: true,
     component: Posts
+  },
+  {
+    path: '/AltaUser',
+    name: 'AltaUser',
+    props: true,
+    component: AbmUser
   },
 
 ]
